@@ -40,10 +40,14 @@ ngApp.config(($locationProvider, $stateProvider) => {
   });
 });
 
-ngApp.run($rootScope => {
-  console.log('Running AngularJS application');
+ngApp.run([
+  '$rootScope',
+  $rootScope => {
+    console.log('Running AngularJS application');
+    console.debug('$rootScope', $rootScope);
 
-  // $rootScope.$on('$stateChangeStart', (e, toState, toParams) => {
-  //   console.log('$stateChangeStart', toState, toParams);
-  // });
-});
+    $rootScope.$on('$stateChangeStart', (e, toState, toParams) => {
+      console.log('$stateChangeStart', toState, toParams);
+    });
+  }
+]);
